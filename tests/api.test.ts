@@ -1,7 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock obsidian module — requestUrl is the only import api.ts uses
-const mockRequestUrl = vi.fn();
+// vi.hoisted ensures mockRequestUrl is available when vi.mock factory runs (hoisted to top)
+const { mockRequestUrl } = vi.hoisted(() => ({
+	mockRequestUrl: vi.fn(),
+}));
 vi.mock('obsidian', () => ({
 	requestUrl: mockRequestUrl,
 }));
