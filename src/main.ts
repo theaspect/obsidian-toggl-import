@@ -1,4 +1,5 @@
 import { Plugin } from 'obsidian';
+import { TogglImportSettingTab } from './settings';
 
 export interface TogglImportSettings {
 	apiToken: string;
@@ -31,7 +32,7 @@ export default class TogglImportPlugin extends Plugin {
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
-		// Phase 2: register settings tab
+		this.addSettingTab(new TogglImportSettingTab(this.app, this));
 		// Phase 5: register import command
 	}
 
