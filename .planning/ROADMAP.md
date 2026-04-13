@@ -61,7 +61,11 @@ Plans:
   2. Running entries (active timers with `duration < 0` or `stop: null`) are silently excluded from returned entries
   3. Each entry's start time is available in the user's local timezone
   4. 401, 429, and network failure responses return structured errors rather than crashing
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Test infrastructure (vitest) and failing unit tests for API client
+- [ ] 03-02-PLAN.md — Toggl API client implementation (src/api.ts + workspaceId setting)
 
 ### Phase 4: Formatter
 **Goal**: The formatter produces correct Markdown table and plain text output from time entries using the configured columns and delimiter
@@ -106,7 +110,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Scaffolding | 0/1 | Planning complete | - |
 | 2. Settings | 0/1 | Planning complete | - |
-| 3. API Client | 0/? | Not started | - |
+| 3. API Client | 0/2 | Planning complete | - |
 | 4. Formatter | 0/? | Not started | - |
 | 5. Command | 0/? | Not started | - |
 | 6. Release | 0/? | Not started | - |
