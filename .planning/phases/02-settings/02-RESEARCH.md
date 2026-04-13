@@ -487,7 +487,7 @@ No missing dependencies.
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Section header style: `setHeading()` vs `createEl('h3')`**
    - What we know: `setHeading()` is official API (since 0.9.16), verified in obsidian.d.ts. `createEl` is raw DOM manipulation.

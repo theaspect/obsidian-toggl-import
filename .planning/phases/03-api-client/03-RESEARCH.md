@@ -398,17 +398,17 @@ export interface TimeEntry {
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **`resp.json` behavior on error responses**
    - What we know: `RequestUrlResponse.json` is typed as `any`
    - What's unclear: Whether Toggl returns a JSON body on 401/429 errors, and whether `resp.json` throws if body is not JSON
-   - Recommendation: Access `resp.json` only after status check confirms 2xx; for error branches use `resp.text` or static messages only
+   - RESOLVED: Access `resp.json` only after status check confirms 2xx. Error branches (401, 429, non-2xx) use static message strings only — `resp.json` is never accessed in error paths. The `togglGet` helper implements this pattern exactly.
 
 2. **Projects pagination**
    - What we know: D-03 specifies fetching all projects from `/workspaces/{id}/projects`
    - What's unclear: Whether this endpoint paginates for large workspaces
-   - Recommendation: Per D-02, implement without pagination for v1 (session cache is best-effort); note as a known limitation
+   - RESOLVED: No pagination for v1 per D-02/D-03. The session cache is best-effort; workspaces with very large project counts are out of scope. Noted as a known limitation in the plan.
 
 ---
 
