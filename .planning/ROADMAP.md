@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: API Client** - Toggl API fetching with timezone-aware date ranges and running-entry filtering
 - [ ] **Phase 4: Formatter** - Pure entry formatting to Markdown table and plain text
 - [ ] **Phase 5: Command** - Import command wiring all modules together with full error handling
-- [ ] **Phase 6: Release** - GitHub Actions release workflow publishing plugin assets
+- [x] **Phase 6: Release** - GitHub Actions release workflow publishing plugin assets
 
 ## Phase Details
 
@@ -105,7 +105,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 06-01-PLAN.md — GitHub Actions release workflow and npm version-bump tooling
+- [x] 06-01-PLAN.md — GitHub Actions release workflow and npm version-bump tooling
 
 ## Progress
 
@@ -119,4 +119,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. API Client | 0/2 | Planning complete | - |
 | 4. Formatter | 0/1 | Planning complete | - |
 | 5. Command | 0/? | Not started | - |
-| 6. Release | 0/1 | Planning complete | - |
+| 6. Release | 1/1 | complete | 2026-04-13 |
