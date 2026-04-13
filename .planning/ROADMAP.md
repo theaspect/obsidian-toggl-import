@@ -102,7 +102,10 @@ Plans:
   1. Pushing a git tag triggers the GitHub Actions workflow automatically
   2. The release includes `main.js`, `manifest.json`, and `styles.css` as downloadable assets
   3. `versions.json` is maintained and consistent with `manifest.json`
-**Plans**: TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 06-01-PLAN.md — GitHub Actions release workflow and npm version-bump tooling
 
 ## Progress
 
@@ -116,4 +119,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. API Client | 0/2 | Planning complete | - |
 | 4. Formatter | 0/1 | Planning complete | - |
 | 5. Command | 0/? | Not started | - |
-| 6. Release | 0/? | Not started | - |
+| 6. Release | 0/1 | Planning complete | - |
