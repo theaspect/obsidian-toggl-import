@@ -6,7 +6,7 @@
 <domain>
 ## Phase Boundary
 
-A GitHub Actions workflow that triggers when a `v*` tag is pushed, builds the plugin from source, and publishes `main.js`, `manifest.json`, and `styles.css` as downloadable release assets. Also includes an `npm run version` helper script for managing version bumps across all three version files before tagging.
+A GitHub Actions workflow that triggers when a bare version tag (e.g., `1.0.0`) is pushed, builds the plugin from source, and publishes `main.js`, `manifest.json`, and `styles.css` as downloadable release assets. Also includes an `npm run version` helper script for managing version bumps across all three version files before tagging.
 
 </domain>
 
@@ -14,7 +14,7 @@ A GitHub Actions workflow that triggers when a `v*` tag is pushed, builds the pl
 ## Implementation Decisions
 
 ### Tag Format
-- **D-01:** Workflow triggers on tags matching `v*` (e.g., `v1.0.0`). The `v` prefix follows GitHub/npm convention. When the workflow compares the tag to `manifest.json`, it strips the `v` prefix.
+- **D-01:** Workflow triggers on bare version tags (e.g., `1.0.0`) matching the `version` field in `manifest.json` exactly. **No `v` prefix.** Obsidian's community plugin submission validator requires the release tag to exactly match `manifest.json`'s version field. Trigger pattern: `tags: ["[0-9]+.[0-9]+.[0-9]+*"]`.
 
 ### Release Notes
 - **D-02:** Use GitHub Actions' `generate-release-notes` feature — pulls commit messages since the last tag automatically. Zero maintenance, shows what changed. No manual body needed.
@@ -23,7 +23,7 @@ A GitHub Actions workflow that triggers when a `v*` tag is pushed, builds the pl
 - **D-03:** Workflow runs `npm install && npm run build` only — no separate `tsc --noEmit` step. The existing `npm run build` production script already includes type-checking; a redundant CI check is not needed.
 
 ### Version Bump Process
-- **D-04:** Add an `npm run version` script to `package.json` that atomically updates `manifest.json`, `package.json`, and `versions.json` to a new version. Release process: run the script, commit the version files, push a `vX.Y.Z` tag.
+- **D-04:** Add an `npm run version` script to `package.json` that atomically updates `manifest.json`, `package.json`, and `versions.json` to a new version. Release process: run the script, commit the version files, push a bare `X.Y.Z` tag.
 
 ### Claude's Discretion
 - Exact GitHub Actions `runs-on` image (ubuntu-latest is standard)
@@ -59,12 +59,12 @@ A GitHub Actions workflow that triggers when a `v*` tag is pushed, builds the pl
 ### Established Patterns
 - `main.js` is gitignored — workflow must run `npm install && npm run build` to produce it
 - `manifest.json` and `versions.json` are manually maintained version files — the version script updates both
-- Obsidian community plugin conventions: `manifest.json` version field must match the git tag (after stripping `v`)
+- Obsidian community plugin conventions: `manifest.json` version field must exactly match the git tag (bare `1.0.0`, no `v` prefix)
 
 ### Integration Points
 - GitHub Actions workflow file: `.github/workflows/release.yml` (new file)
 - `package.json` scripts block: new `"version"` script entry
-- Git tag: `v1.0.0` format triggers the workflow
+- Git tag: `1.0.0` bare format triggers the workflow
 
 </code_context>
 
