@@ -64,8 +64,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Test infrastructure (vitest) and failing unit tests for API client
-- [ ] 03-02-PLAN.md — Toggl API client implementation (src/api.ts + workspaceId setting)
+- [x] 03-01-PLAN.md — Test infrastructure (vitest) and failing unit tests for API client
+- [x] 03-02-PLAN.md — Toggl API client implementation (src/api.ts + workspaceId setting)
 
 ### Phase 4: Formatter
 **Goal**: The formatter produces correct Markdown table and plain text output from time entries using the configured columns and delimiter
