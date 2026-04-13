@@ -404,17 +404,13 @@ These requirements apply only when submitting to the Obsidian community plugin r
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Tag format — D-01 vs. submission requirement**
-   - What we know: D-01 decided `v*` prefix; Obsidian validator requires no prefix. The workflow trigger pattern and the actual release tag are two different things.
-   - What's unclear: Does the developer want to keep `v*` tags locally (git convention) and have the workflow create the release with the bare version as tag name? Or switch entirely to no-`v`-prefix tags?
-   - Recommendation: Default to `tags: - "*"` trigger and bare `1.0.0` tags. If the developer wants `v` prefix in git, add a step: `TAG_NAME="${{ github.ref_name }}"` then `TAG_VERSION="${TAG_NAME#v}"` to strip the prefix when creating the release. Either approach works, but the final GitHub Release tag and the asset tag must be `1.0.0`.
+1. **Tag format — D-01 vs. submission requirement** — RESOLVED
+   - Decision: Use bare `1.0.0` tags (no `v` prefix). CONTEXT.md D-01 updated after discuss-phase confirmed bare tags are required by Obsidian's community submission validator. Workflow trigger: `tags: ["[0-9]+.[0-9]+.[0-9]+*"]`. `.npmrc` sets `tag-version-prefix=""` so `npm version` also creates bare tags.
 
-2. **`versions.json` guard logic**
-   - What we know: The official `version-bump.mjs` checks `Object.values(versions).includes(minAppVersion)` before adding a new entry.
-   - What's unclear: If `minAppVersion` stays at `1.0.0` across all v1.x patch releases (which is likely), subsequent patch bumps (1.0.1, 1.0.2) will NOT be added to `versions.json`. This is a bug in the official script for projects that don't move `minAppVersion` frequently.
-   - Recommendation: Modify the guard to `if (!versions[targetVersion])` — add the entry if the version key doesn't exist yet, regardless of `minAppVersion`. Document this deviation from the official script in a comment.
+2. **`versions.json` guard logic** — RESOLVED
+   - Decision: Replace the official `Object.values(versions).includes(minAppVersion)` guard with `!versions[targetVersion]` (key-based). This ensures every patch bump is recorded in `versions.json` regardless of whether `minAppVersion` changes. Deviation from official script is documented in a comment in `version-bump.mjs`.
 
 ---
 
