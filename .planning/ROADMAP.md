@@ -76,7 +76,10 @@ Plans:
   2. Plain text output renders one entry per line with columns joined by the configured delimiter
   3. Duration values display as human-readable format (e.g. `1h 23m`) rather than raw seconds
   4. Entries with multiple tags render the tags column as a comma-separated list
-**Plans**: TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 04-PLAN.md — Formatter implementation and unit tests
 
 ### Phase 5: Command
 **Goal**: The "Import Toggl Entries" command is available in the command palette and inserts correctly formatted entries at the cursor, handling all error and edge cases
@@ -111,6 +114,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Scaffolding | 0/1 | Planning complete | - |
 | 2. Settings | 0/1 | Planning complete | - |
 | 3. API Client | 0/2 | Planning complete | - |
-| 4. Formatter | 0/? | Not started | - |
+| 4. Formatter | 0/1 | Planning complete | - |
 | 5. Command | 0/? | Not started | - |
 | 6. Release | 0/? | Not started | - |
