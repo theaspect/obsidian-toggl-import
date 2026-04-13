@@ -53,14 +53,18 @@ Exceptions: none — all spacing is Obsidian-managed. Do NOT add custom `margin`
 
 ## Typography
 
-Obsidian theme typography applies throughout. No font overrides.
+Obsidian theme typography applies throughout. No font overrides. The executor introduces zero weight declarations — all weights are Obsidian theme-controlled and the developer must not override them with custom CSS.
 
-| Role | Size | Weight | Line Height |
-|------|------|--------|-------------|
-| Setting name (label) | Obsidian default (~14px) | 500 (medium) | 1.4 |
-| Setting description | Obsidian default (~12px) | 400 (regular) | 1.5 |
-| Section heading (`setHeading()`) | Obsidian default (~13px, styled as subheading) | 600 (semibold) | 1.2 |
-| Input placeholder | Obsidian default (~14px) | 400 (regular) | 1.4 |
+Two weight tiers are recognized for semantic purposes only. The exact rendered weight for each tier is determined by the active Obsidian theme, not by plugin code.
+
+| Role | Size | Weight Tier | Line Height |
+|------|------|-------------|-------------|
+| Setting name (label) | Obsidian default (~14px) | emphasized (theme-controlled) | 1.4 |
+| Setting description | Obsidian default (~12px) | regular (theme-controlled) | 1.5 |
+| Section heading (`setHeading()`) | Obsidian default (~13px, styled as subheading) | emphasized (theme-controlled) | 1.2 |
+| Input placeholder | Obsidian default (~14px) | regular (theme-controlled) | 1.4 |
+
+**Weight tiers:** `regular` maps to body/description/placeholder roles; `emphasized` maps to names and headings. Obsidian themes typically render regular at 400 and emphasized anywhere from 500–600 — the plugin code never specifies a numeric weight.
 
 **Source:** Obsidian theme system — executor must not override these with custom CSS.
 
