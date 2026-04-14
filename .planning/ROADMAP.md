@@ -30,3 +30,9 @@
 | 6. Release | v1.0 | 1/1 | Complete | 2026-04-13 |
 
 Full milestone archive: `.planning/milestones/v1.0-ROADMAP.md`
+
+## v1.1 Polish & Registry
+
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 7. CI Fixes | v1.1 | 2/2 | Complete | 2026-04-14 |
