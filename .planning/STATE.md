@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Polish & Registry
-status: complete
-stopped_at: Phase 07 (ci-fixes) complete — all 2 plans executed
+status: active
+stopped_at: ""
 last_updated: "2026-04-14T00:00:00Z"
 last_activity: 2026-04-14
 progress:
-  total_phases: 7
+  total_phases: 11
   completed_phases: 7
   total_plans: 10
   completed_plans: 10
-  percent: 100
+  percent: 64
 ---
 
 # Project State
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-13)
 
 **Core value:** One command pulls the day's Toggl entries into your daily note, formatted exactly how you want them.
-**Current focus:** Phase 07 ci-fixes complete — CI/CD and peer dep fix done
+**Current focus:** Phase 08 (security) — next up after expanding v1.1 scope to phases 8–11
 
 ## Current Position
 
-Milestone v1.1 Polish & Registry — Phase 07 ci-fixes COMPLETE
-Status: Phase 07 complete — 2/2 plans executed
+Milestone v1.1 Polish & Registry — Phase 07 ci-fixes COMPLETE, phases 08–11 pending
+Status: Phase 07 complete — expanding milestone scope to include SEC, IMP, FMT, REL phases
 
 ## Accumulated Context
 

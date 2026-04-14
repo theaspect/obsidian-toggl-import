@@ -36,3 +36,7 @@ Full milestone archive: `.planning/milestones/v1.0-ROADMAP.md`
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 7. CI Fixes | v1.1 | 2/2 | Complete | 2026-04-14 |
+| 8. Security | v1.1 | 0/? | Not started | - |
+| 9. Import Behavior | v1.1 | 0/? | Not started | - |
+| 10. Formatting | v1.1 | 0/? | Not started | - |
+| 11. Release | v1.1 | 0/? | Not started | - |
