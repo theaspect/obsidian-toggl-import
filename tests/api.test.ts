@@ -16,12 +16,12 @@ import { fetchTimeEntries, TimeEntry } from '../src/api';
 function createMockPlugin(overrides: Partial<{ apiToken: string; workspaceId: number }> = {}) {
 	return {
 		settings: {
-			apiToken: overrides.apiToken ?? 'test-token-abc123',
 			workspaceId: overrides.workspaceId ?? 42,
 			outputFormat: 'table' as const,
 			columns: { description: true, startTime: true, duration: true, tags: false, project: false },
 			delimiter: '|',
 		},
+		getApiToken: vi.fn().mockResolvedValue(overrides.apiToken ?? 'test-token-abc123'),
 		saveSettings: vi.fn().mockResolvedValue(undefined),
 	} as any;
 }
