@@ -4,7 +4,6 @@ import { formatEntries } from './formatter';
 import { TogglImportSettingTab } from './settings';
 
 export interface TogglImportSettings {
-	apiToken: string;
 	outputFormat: 'table' | 'plaintext';
 	columns: {
 		description: boolean;
@@ -18,7 +17,6 @@ export interface TogglImportSettings {
 }
 
 export const DEFAULT_SETTINGS: TogglImportSettings = {
-	apiToken: '',
 	outputFormat: 'table',
 	columns: {
 		description: true,
@@ -34,6 +32,10 @@ export const DEFAULT_SETTINGS: TogglImportSettings = {
 export default class TogglImportPlugin extends Plugin {
 	settings!: TogglImportSettings;
 
+	async getApiToken(): Promise<string> {
+		return (this.app.loadLocalStorage('toggl-api-token') as string | null) ?? '';
+	}
+
 	async onload(): Promise<void> {
 		await this.loadSettings();
 		this.addSettingTab(new TogglImportSettingTab(this.app, this));
@@ -42,7 +44,8 @@ export default class TogglImportPlugin extends Plugin {
 			name: 'Import Toggl Entries',
 			editorCallback: async (editor: Editor) => {
 				// D-04: Empty token guard — fail fast before any network call
-				if (this.settings.apiToken === '') {
+				const token = await this.getApiToken();
+				if (token === '') {
 					new Notice('Configure your Toggl API token in Settings \u2192 Toggl Import first.');
 					return;
 				}
@@ -80,12 +83,13 @@ export default class TogglImportPlugin extends Plugin {
 	onunload(): void {}
 
 	async loadSettings(): Promise<void> {
-		this.settings = Object.assign(
-			{},
-			DEFAULT_SETTINGS,
-			this.settings ?? {},
-			await this.loadData()
-		);
+		const raw = (await this.loadData()) ?? {};
+		if (raw && typeof raw === 'object' && 'apiToken' in raw) {
+			delete (raw as Record<string, unknown>).apiToken;
+		}
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, this.settings ?? {}, raw);
+		// Persist sanitized form so data.json no longer carries the legacy field
+		await this.saveSettings();
 	}
 
 	async saveSettings(): Promise<void> {

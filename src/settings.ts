@@ -15,13 +15,12 @@ export class TogglImportSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Toggl API token')
-			.setDesc('Stored in plain text in data.json \u2014 included in Obsidian Sync.')
+			.setDesc('Stored locally on this device \u2014 not synced to Obsidian Sync.')
 			.addText(text => text
 				.setPlaceholder('Enter your API token')
-				.setValue(this.plugin.settings.apiToken)
-				.onChange(async (value) => {
-					this.plugin.settings.apiToken = value;
-					await this.plugin.saveSettings();
+				.setValue((this.plugin.app.loadLocalStorage('toggl-api-token') as string | null) ?? '')
+				.onChange((value) => {
+					this.plugin.app.saveLocalStorage('toggl-api-token', value);
 				})
 				.then(c => { c.inputEl.type = 'password'; })
 			);

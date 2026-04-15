@@ -68,7 +68,7 @@ export async function fetchTimeEntries(
 	plugin: TogglImportPlugin,
 	date: string,
 ): Promise<TimeEntry[]> {
-	const token = plugin.settings.apiToken;
+	const token = await plugin.getApiToken();
 
 	// D-06: Auto-populate workspaceId from /me on first import
 	if (plugin.settings.workspaceId === 0) {

@@ -7,8 +7,8 @@
 
 ### CI / Infrastructure
 
-- [x] **CI-01**: GitHub Actions workflow runs on Node.js 24 compatible action versions (actions/checkout, actions/setup-node) — ✓ v1.1 Phase 7
-- [x] **CI-02**: `npm install` resolves cleanly in CI with no peer dependency conflicts between obsidian and @codemirror/state — ✓ v1.1 Phase 7
+- [ ] **CI-01**: GitHub Actions workflow runs on Node.js 24 compatible action versions (actions/checkout, actions/setup-node)
+- [ ] **CI-02**: `npm install` resolves cleanly in CI with no peer dependency conflicts between obsidian and @codemirror/state
 
 ### Settings / Security
 
@@ -53,8 +53,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CI-01 | Phase 7 | Complete |
-| CI-02 | Phase 7 | Complete |
+| CI-01 | Phase 7 | Pending |
+| CI-02 | Phase 7 | Pending |
 | SEC-01 | Phase 8 | Pending |
 | SEC-02 | Phase 8 | Pending |
 | IMP-01 | Phase 9 | Pending |
