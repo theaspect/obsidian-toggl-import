@@ -1,13 +1,13 @@
 import { requestUrl } from 'obsidian';
 import type TogglImportPlugin from './main';
 
-const BASE = 'https://api.track.toggl.com/api/v9';
+export const BASE = 'https://api.track.toggl.com/api/v9';
 
 function authHeader(token: string): string {
 	return 'Basic ' + btoa(token + ':api_token');
 }
 
-async function togglGet<T>(url: string, token: string): Promise<T> {
+export async function togglGet<T>(url: string, token: string): Promise<T> {
 	let resp;
 	try {
 		resp = await requestUrl({

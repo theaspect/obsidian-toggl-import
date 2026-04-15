@@ -1,5 +1,6 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, PluginSettingTab, Setting, Notice, ButtonComponent } from 'obsidian';
 import TogglImportPlugin, { TogglImportSettings } from './main';
+import { togglGet, BASE } from './api';
 
 export class TogglImportSettingTab extends PluginSettingTab {
 	plugin: TogglImportPlugin;
@@ -24,6 +25,27 @@ export class TogglImportSettingTab extends PluginSettingTab {
 				})
 				.then(c => { c.inputEl.type = 'password'; })
 			);
+
+		new Setting(containerEl)
+			.setName('Test connection')
+			.setDesc('Verify the API token by calling the Toggl /me endpoint.')
+			.addButton((btn: ButtonComponent) => {
+				btn.setButtonText('Test')
+					.onClick(async () => {
+						btn.setDisabled(true);
+						btn.setButtonText('Testing...');
+						try {
+							const token = (this.plugin.app.loadLocalStorage('toggl-api-token') as string | null) ?? '';
+							const me = await togglGet<{ fullname: string }>(`${BASE}/me`, token);
+							new Notice(`Connected as ${me.fullname}`);
+						} catch (err: unknown) {
+							new Notice(err instanceof Error ? err.message : 'Toggl API error: unknown error');
+						} finally {
+							btn.setDisabled(false);
+							btn.setButtonText('Test');
+						}
+					});
+			});
 
 		new Setting(containerEl)
 			.setName('Output format')
