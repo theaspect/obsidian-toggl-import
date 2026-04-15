@@ -37,13 +37,17 @@ Full milestone archive: `.planning/milestones/v1.0-ROADMAP.md`
 |-------|-----------|----------------|--------|-----------|
 | 7. CI Fixes | v1.1 | 2/2 | Complete | 2026-04-14 |
 | 8. Security | v1.1 | 2/2 | Complete   | 2026-04-15 |
-| 9. Import Behavior | v1.1 | 0/? | Not started | - |
+| 9. Import Behavior | v1.1 | 0/1 | Not started | - |
 | 10. Formatting | v1.1 | 0/? | Not started | - |
 | 11. Release | v1.1 | 0/? | Not started | - |
 
 ### Phase 9: Import Behavior
-**Goal**: Entries sort by start time ascending and the import command parses dates from note filenames with a yyyy-mm-dd prefix
+**Goal**: Entries sort by start time ascending (configurable asc/desc) and the import command parses dates from note filenames with a yyyy-mm-dd prefix
 **Requirements**: IMP-01, IMP-02
+**Plans:** 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — Sort entries by start time (configurable asc/desc) + parse date from filename prefix
 
 ### Phase 10: Formatting
 **Goal**: Users can define a custom template string using `${variable}` placeholders as a third format mode
