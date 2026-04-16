@@ -38,7 +38,7 @@ Full milestone archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 7. CI Fixes | v1.1 | 2/2 | Complete | 2026-04-14 |
 | 8. Security | v1.1 | 2/2 | Complete   | 2026-04-15 |
 | 9. Import Behavior | v1.1 | 0/1 | Not started | - |
-| 10. Formatting | v1.1 | 0/1 | Not started | - |
+| 10. Formatting | v1.1 | 1/1 | Complete    | 2026-04-16 |
 | 11. Release | v1.1 | 0/? | Not started | - |
 
 ### Phase 9: Import Behavior
@@ -52,10 +52,10 @@ Plans:
 ### Phase 10: Formatting
 **Goal**: Users can define a custom template string using `${variable}` placeholders as a third format mode
 **Requirements**: FMT-01
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 10-01-PLAN.md — Template format mode: evaluator, formatter branch, settings UI
+- [x] 10-01-PLAN.md — Template format mode: evaluator, formatter branch, settings UI
 
 ### Phase 11: Release
 **Goal**: README is complete and a community plugin registry submission PR is opened
