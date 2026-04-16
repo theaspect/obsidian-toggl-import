@@ -4,7 +4,7 @@ import { formatEntries } from './formatter';
 import { TogglImportSettingTab } from './settings';
 
 export interface TogglImportSettings {
-	outputFormat: 'table' | 'plaintext';
+	outputFormat: 'table' | 'plaintext' | 'template';
 	columns: {
 		description: boolean;
 		startTime: boolean;
@@ -13,6 +13,7 @@ export interface TogglImportSettings {
 		project: boolean;
 	};
 	delimiter: string;
+	templateString: string;
 	workspaceId: number;
 	sortOrder: 'asc' | 'desc';
 }
@@ -27,6 +28,7 @@ export const DEFAULT_SETTINGS: TogglImportSettings = {
 		project: false,
 	},
 	delimiter: '|',
+	templateString: '${description} (${duration})',
 	workspaceId: 0,
 	sortOrder: 'asc',
 };
