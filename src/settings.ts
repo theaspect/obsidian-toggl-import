@@ -60,9 +60,10 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			.addDropdown(drop => drop
 				.addOption('table', 'Markdown table')
 				.addOption('plaintext', 'Plain text')
+				.addOption('template', 'Custom template')
 				.setValue(this.plugin.settings.outputFormat)
 				.onChange(async (value) => {
-					this.plugin.settings.outputFormat = value as 'table' | 'plaintext';
+					this.plugin.settings.outputFormat = value as 'table' | 'plaintext' | 'template';
 					this.display();
 					await this.plugin.saveSettings();
 				})
@@ -76,6 +77,20 @@ export class TogglImportSettingTab extends PluginSettingTab {
 					.setValue(this.plugin.settings.delimiter)
 					.onChange(async (value) => {
 						this.plugin.settings.delimiter = value;
+						await this.plugin.saveSettings();
+					})
+				);
+		}
+
+		if (this.plugin.settings.outputFormat === 'template') {
+			new Setting(containerEl)
+				.setName('Template')
+				.setDesc('Available: description, start, duration, tags, project')
+				.addTextArea(text => text
+					.setPlaceholder('e.g. ${description} (${duration})')
+					.setValue(this.plugin.settings.templateString)
+					.onChange(async (value) => {
+						this.plugin.settings.templateString = value;
 						await this.plugin.saveSettings();
 					})
 				);
@@ -104,11 +119,14 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			{ key: 'project',     label: 'Project' },
 		];
 
+		const isTemplate = this.plugin.settings.outputFormat === 'template';
+
 		for (const col of columns) {
 			new Setting(containerEl)
 				.setName(col.label)
 				.addToggle(toggle => toggle
 					.setValue(this.plugin.settings.columns[col.key])
+					.setDisabled(isTemplate)
 					.onChange(async (value) => {
 						this.plugin.settings.columns[col.key] = value;
 						await this.plugin.saveSettings();
