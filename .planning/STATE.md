@@ -54,7 +54,7 @@ Phase 08 decisions:
 
 ### Pending Todos
 
-None.
+- [Add day-break cutoff time setting](.planning/todos/pending/2026-04-16-add-day-break-cutoff-time-setting.md) — configurable HH:MM day boundary so late-night entries attribute to the correct daily note
 
 ### Blockers/Concerns
 
