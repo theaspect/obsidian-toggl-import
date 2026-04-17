@@ -56,50 +56,6 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			});
 
 		new Setting(containerEl)
-			.setName('Output format')
-			.addDropdown(drop => drop
-				.addOption('table', 'Markdown table')
-				.addOption('plaintext', 'Plain text')
-				.addOption('template', 'Custom template')
-				.setValue(this.plugin.settings.outputFormat)
-				.onChange(async (value) => {
-					this.plugin.settings.outputFormat = value as 'table' | 'plaintext' | 'template';
-					this.display();
-					await this.plugin.saveSettings();
-				})
-			);
-
-		if (this.plugin.settings.outputFormat === 'plaintext') {
-			new Setting(containerEl)
-				.setName('Delimiter')
-				.setDesc('Character(s) used to separate columns in plain text output.')
-				.addText(text => text
-					.setValue(this.plugin.settings.delimiter)
-					.onChange(async (value) => {
-						this.plugin.settings.delimiter = value;
-						await this.plugin.saveSettings();
-					})
-				);
-		}
-
-		if (this.plugin.settings.outputFormat === 'template') {
-			new Setting(containerEl)
-				.setName('Template')
-				.setDesc('Available: description, start, duration, tags, project')
-				// addText (wide): deliberately using text input rather than addTextArea —
-				// the single-line wide input (styled by quick task 260416-vuj) is preferred
-				// for template strings over a multi-line textarea.
-				.addText(text => text
-					.setPlaceholder('e.g. $description ($duration)')
-					.setValue(this.plugin.settings.templateString)
-					.onChange(async (value) => {
-						this.plugin.settings.templateString = value;
-						await this.plugin.saveSettings();
-					})
-				);
-		}
-
-		new Setting(containerEl)
 			.setName('Sort order')
 			.setDesc('Order in which imported entries appear.')
 			.addDropdown(drop => drop
@@ -124,6 +80,48 @@ export class TogglImportSettingTab extends PluginSettingTab {
 						return;
 					}
 					this.plugin.settings.dayWrapTime = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(containerEl)
+			.setName('Output format')
+			.addDropdown(drop => drop
+				.addOption('plaintext', 'Plain text')
+				.addOption('template', 'Custom template')
+				.addOption('table', 'Markdown table')
+				.setValue(this.plugin.settings.outputFormat)
+				.onChange(async (value) => {
+					this.plugin.settings.outputFormat = value as 'table' | 'plaintext' | 'template';
+					this.display();
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(containerEl)
+			.setName('Delimiter')
+			.setDesc('Character(s) used to separate columns in plain text output.')
+			.addText(text => text
+				.setValue(this.plugin.settings.delimiter)
+				.setDisabled(this.plugin.settings.outputFormat !== 'plaintext')
+				.onChange(async (value) => {
+					this.plugin.settings.delimiter = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(containerEl)
+			.setName('Template')
+			.setDesc('Available: description, start, duration, tags, project')
+			// addText (wide): deliberately using text input rather than addTextArea —
+			// the single-line wide input (styled by quick task 260416-vuj) is preferred
+			// for template strings over a multi-line textarea.
+			.addText(text => text
+				.setPlaceholder('e.g. $description ($duration)')
+				.setValue(this.plugin.settings.templateString)
+				.setDisabled(this.plugin.settings.outputFormat !== 'template')
+				.onChange(async (value) => {
+					this.plugin.settings.templateString = value;
 					await this.plugin.saveSettings();
 				})
 			);
