@@ -66,6 +66,12 @@ Running the command again appends new entries rather than replacing existing one
 | Sort order | `Ascending` (oldest first) or `Descending` (newest first) | Ascending |
 | Columns | Toggle individual columns: Description, Start time, Duration, Tags, Project. Disabled in template mode (template controls output). | Description, Start time, Duration enabled |
 
+## Third-Party Service
+
+- **Account requirement** — Using this plugin requires a [Toggl Track](https://track.toggl.com) account and API token. Sign up at [track.toggl.com](https://track.toggl.com).
+- **Network communication** — The plugin communicates with the Toggl Track API (`https://api.track.toggl.com`) to fetch your time entries. No data is sent to any other server. Refer to Toggl's privacy policy at [toggl.com/legal/privacy](https://toggl.com/legal/privacy) for details on how Toggl handles your data.
+- **No affiliation** — This plugin is an independent open-source project and is not affiliated with, endorsed by, or associated with Toggl OÜ or the Toggl Track product.
+
 ## Development
 
 ```
