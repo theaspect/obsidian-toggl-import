@@ -48,6 +48,12 @@ export interface TimeEntry {
 	tags: string[];
 }
 
+/**
+ * Session-scoped project name cache. Populated once on first import and never
+ * invalidated during the Obsidian session. If project names are renamed in Toggl,
+ * Obsidian must be restarted to pick up the changes. Reset via _resetProjectCache()
+ * in tests only.
+ */
 let projectCache: Map<number, string> | null = null;
 
 async function loadProjectCache(workspaceId: number, token: string): Promise<void> {
@@ -87,7 +93,7 @@ export async function fetchTimeEntries(
 
 	// D-01: Construct date boundaries as local midnight -> UTC
 	const start = new Date(date + 'T00:00:00').toISOString();
-	const end = new Date(date + 'T23:59:59').toISOString();
+	const end = new Date(date + 'T23:59:59').toISOString(); // 1-second gap is intentional and benign: Toggl uses inclusive matching at second precision
 
 	// CMD-04: Fetch time entries for date range
 	const raw = await togglGet<RawTimeEntry[]>(
@@ -99,8 +105,10 @@ export async function fetchTimeEntries(
 	const completed = raw.filter(e => !(e.duration < 0 || e.stop == null));
 
 	// Day wrap time: exclude entries whose local start is before the configured boundary
-	const [wrapH, wrapM] = plugin.settings.dayWrapTime.split(':').map(Number);
-	const wrapMinutes = (wrapH ?? 0) * 60 + (wrapM ?? 0);
+	const parts = plugin.settings.dayWrapTime.split(':').map(Number);
+	const wrapH = parts[0] ?? NaN;
+	const wrapM = parts[1] ?? NaN;
+	const wrapMinutes = isNaN(wrapH) || isNaN(wrapM) ? 0 : wrapH * 60 + wrapM;
 	const wrapped = wrapMinutes === 0
 		? completed
 		: completed.filter(e => {
