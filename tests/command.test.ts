@@ -60,8 +60,10 @@ async function loadPluginAndGetCallback() {
 			project: false,
 		},
 		delimiter: '|',
+		templateString: '$description ($duration)',
 		workspaceId: 42,
 		sortOrder: 'asc' as const,
+		dayWrapTime: '00:00',
 	};
 	await plugin.onload();
 	(plugin as any).getApiToken = vi.fn().mockResolvedValue('token');

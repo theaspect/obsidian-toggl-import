@@ -102,7 +102,10 @@ function makeTab() {
 			outputFormat: 'table' as const,
 			columns: { description: true, startTime: true, duration: true, tags: false, project: false },
 			delimiter: '|',
+			templateString: '$description ($duration)',
 			workspaceId: 42,
+			sortOrder: 'asc' as const,
+			dayWrapTime: '00:00',
 		},
 		saveSettings: vi.fn().mockResolvedValue(undefined),
 	} as any;
