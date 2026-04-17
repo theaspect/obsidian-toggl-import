@@ -109,6 +109,18 @@ export class TogglImportSettingTab extends PluginSettingTab {
 				})
 			);
 
+		new Setting(containerEl)
+			.setName('Day wrap time')
+			.setDesc('Entries starting before this time (HH:MM) are treated as the previous day. Default 00:00 disables this.')
+			.addText(text => text
+				.setPlaceholder('00:00')
+				.setValue(this.plugin.settings.dayWrapTime)
+				.onChange(async (value) => {
+					this.plugin.settings.dayWrapTime = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
 		new Setting(containerEl).setName('Columns').setHeading();
 
 		const columns: Array<{ key: keyof TogglImportSettings['columns']; label: string }> = [
