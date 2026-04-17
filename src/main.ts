@@ -16,6 +16,7 @@ export interface TogglImportSettings {
 	templateString: string;
 	workspaceId: number;
 	sortOrder: 'asc' | 'desc';
+	dayWrapTime: string;
 }
 
 export const DEFAULT_SETTINGS: TogglImportSettings = {
@@ -31,6 +32,7 @@ export const DEFAULT_SETTINGS: TogglImportSettings = {
 	templateString: '$description ($duration)',
 	workspaceId: 0,
 	sortOrder: 'asc',
+	dayWrapTime: '00:00',
 };
 
 export default class TogglImportPlugin extends Plugin {
