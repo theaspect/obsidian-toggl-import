@@ -1,10 +1,10 @@
 {
   "id": "obsidian-toggl-import",
   "name": "Toggl Import",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minAppVersion": "1.8.7",
   "description": "Import Toggl Track time entries into daily notes with a single command.",
   "author": "Constantine",
-  "authorUrl": "",
+  "authorUrl": "https://github.com/theaspect",
   "isDesktopOnly": true
 }
