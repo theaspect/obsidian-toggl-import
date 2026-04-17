@@ -86,6 +86,9 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			new Setting(containerEl)
 				.setName('Template')
 				.setDesc('Available: description, start, duration, tags, project')
+				// addText (wide): deliberately using text input rather than addTextArea —
+				// the single-line wide input (styled by quick task 260416-vuj) is preferred
+				// for template strings over a multi-line textarea.
 				.addText(text => text
 					.setPlaceholder('e.g. $description ($duration)')
 					.setValue(this.plugin.settings.templateString)

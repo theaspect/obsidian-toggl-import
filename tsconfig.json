@@ -5,12 +5,13 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "module": "ESNext",
-    "target": "ES6",
+    "target": "ES2018",
     "allowJs": true,
+    "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "noUncheckedIndexedAccess": true,
     "isolatedModules": true,
@@ -18,7 +19,7 @@
     "strictBindCallApply": true,
     "allowSyntheticDefaultImports": true,
     "useUnknownInCatchVariables": true,
-    "lib": ["DOM", "ES5", "ES6", "ES7", "ES2017", "ES2018"]
+    "lib": ["ES2018", "DOM"]
   },
   "include": ["src/**/*.ts"]
 }
