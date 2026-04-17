@@ -54,6 +54,8 @@ Running the command again appends new entries rather than replacing existing one
 
 ## Settings
 
+![Settings](assets/config.png)
+
 | Setting | Description | Default |
 |---------|-------------|---------|
 | Toggl API token | Your Toggl Track API token, stored locally on this device | (empty) |
