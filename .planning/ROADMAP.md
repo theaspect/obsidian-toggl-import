@@ -39,7 +39,7 @@ Full milestone archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 8. Security | v1.1 | 2/2 | Complete   | 2026-04-15 |
 | 9. Import Behavior | v1.1 | 0/1 | Not started | - |
 | 10. Formatting | v1.1 | 1/1 | Complete    | 2026-04-16 |
-| 11. Release | v1.1 | 1/2 | In Progress|  |
+| 11. Release | v1.1 | 2/2 | Complete    | 2026-04-17 |
 
 ### Phase 9: Import Behavior
 **Goal**: Entries sort by start time ascending (configurable asc/desc) and the import command parses dates from note filenames with a yyyy-mm-dd prefix
