@@ -47,7 +47,7 @@ export default class TogglImportPlugin extends Plugin {
 		this.addSettingTab(new TogglImportSettingTab(this.app, this));
 		this.addCommand({
 			id: 'import-toggl-entries',
-			name: 'Import Toggl Entries',
+			name: 'Import Toggl entries',
 			editorCallback: async (editor: Editor) => {
 				// D-04: Empty token guard — fail fast before any network call
 				const token = await this.getApiToken();
