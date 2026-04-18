@@ -1,3 +1,8 @@
 .setting-item.is-disabled {
     opacity: 0.45;
 }
+
+.toggl-import-day-wrap-input {
+    width: 80px;
+    text-align: right;
+}

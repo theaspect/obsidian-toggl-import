@@ -73,7 +73,7 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			.addText(text => text
 				.setPlaceholder('00:00')
 				.setValue(this.plugin.settings.dayWrapTime)
-				.then(t => { t.inputEl.style.width = '80px'; t.inputEl.style.textAlign = 'right'; })
+				.then(t => { t.inputEl.addClass('toggl-import-day-wrap-input'); })
 				.onChange(async (value) => {
 					if (!/^\d{2}:\d{2}$/.test(value)) {
 						new Notice('Day wrap time must be in HH:MM format (e.g. 02:00). Value not saved.');
