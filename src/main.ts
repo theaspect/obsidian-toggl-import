@@ -38,7 +38,7 @@ export const DEFAULT_SETTINGS: TogglImportSettings = {
 export default class TogglImportPlugin extends Plugin {
 	settings!: TogglImportSettings;
 
-	async getApiToken(): Promise<string> {
+	getApiToken(): string {
 		return (this.app.loadLocalStorage('toggl-api-token') as string | null) ?? '';
 	}
 
@@ -50,7 +50,7 @@ export default class TogglImportPlugin extends Plugin {
 			name: 'Import Toggl entries',
 			editorCallback: async (editor: Editor) => {
 				// D-04: Empty token guard — fail fast before any network call
-				const token = await this.getApiToken();
+				const token = this.getApiToken();
 				if (token === '') {
 					new Notice('Configure your Toggl API token in settings \u2192 Toggl import first.');
 					return;
