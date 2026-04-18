@@ -29,7 +29,7 @@ export class TogglImportSettingTab extends PluginSettingTab {
 				.setValue(currentToken)
 				.onChange((value) => {
 					this.plugin.app.saveLocalStorage('toggl-api-token', value);
-					if (testBtn) testBtn.setDisabled(value.trim() === '');
+					testBtn?.setDisabled(value.trim() === '');
 				})
 				.then(c => { c.inputEl.type = 'password'; })
 			)
@@ -69,14 +69,14 @@ export class TogglImportSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Day wrap time')
-			.setDesc('Entries starting before this time (HH:MM) are treated as the previous day. Default 00:00 disables this.')
+			.setDesc('Entries starting before this time (hh:mm) are treated as the previous day. Default 00:00 disables this.')
 			.addText(text => text
 				.setPlaceholder('00:00')
 				.setValue(this.plugin.settings.dayWrapTime)
 				.then(t => { t.inputEl.addClass('toggl-import-day-wrap-input'); })
 				.onChange(async (value) => {
 					if (!/^\d{2}:\d{2}$/.test(value)) {
-						new Notice('Day wrap time must be in HH:MM format (e.g. 02:00). Value not saved.');
+						new Notice('Day wrap time must be in hh:mm format (e.g. 02:00). Value not saved.');
 						return;
 					}
 					this.plugin.settings.dayWrapTime = value;
@@ -122,7 +122,7 @@ export class TogglImportSettingTab extends PluginSettingTab {
 			// for template strings over a multi-line textarea.
 			.setDisabled(this.plugin.settings.outputFormat !== 'template')
 			.addText(text => text
-				.setPlaceholder('e.g. $description ($duration)')
+				.setPlaceholder('E.g. $description ($duration)')
 				.setValue(this.plugin.settings.templateString)
 				.setDisabled(this.plugin.settings.outputFormat !== 'template')
 				.onChange(async (value) => {

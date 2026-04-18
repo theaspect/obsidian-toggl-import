@@ -52,7 +52,7 @@ export default class TogglImportPlugin extends Plugin {
 				// D-04: Empty token guard — fail fast before any network call
 				const token = await this.getApiToken();
 				if (token === '') {
-					new Notice('Configure your Toggl API token in Settings \u2192 Toggl Import first.');
+					new Notice('Configure your Toggl API token in settings \u2192 Toggl import first.');
 					return;
 				}
 
@@ -60,7 +60,7 @@ export default class TogglImportPlugin extends Plugin {
 				const basename = this.app.workspace.getActiveFile()?.basename ?? '';
 				const dateMatch = basename.match(/^(\d{4}-\d{2}-\d{2})/);
 				if (!dateMatch) {
-					new Notice('Note filename must start with a valid date (expected: yyyy-mm-dd, e.g. 2026-01-15 or 2026-01-15 Daily Note).');
+					new Notice('Note filename must start with a valid date (expected: yyyy-mm-dd, e.g. 2026-01-15 or 2026-01-15 daily note).');
 					return;
 				}
 				const date = dateMatch[1] as string;
@@ -91,11 +91,11 @@ export default class TogglImportPlugin extends Plugin {
 	onunload(): void {}
 
 	async loadSettings(): Promise<void> {
-		const raw = (await this.loadData()) ?? {};
-		if (raw && typeof raw === 'object' && 'apiToken' in raw) {
-			delete (raw as Record<string, unknown>).apiToken;
+		const raw = ((await this.loadData()) ?? {}) as Record<string, unknown>;
+		if ('apiToken' in raw) {
+			delete raw.apiToken;
 		}
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, this.settings ?? {}, raw);
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, this.settings ?? {}, raw) as TogglImportSettings;
 		// Persist sanitized form so data.json no longer carries the legacy field
 		await this.saveSettings();
 	}
