@@ -135,9 +135,14 @@ export async function fetchTimeEntries(
 				const startLocalMinutes = startLocal.getHours() * 60 + startLocal.getMinutes();
 				const entryDate = localDateStr(startLocal);
 				if (entryDate === date) {
+					// Current day: keep entries at or after wrap time
 					return startLocalMinutes >= wrapMinutes;
 				}
-				return startLocalMinutes < wrapMinutes;
+				if (entryDate === nextDay) {
+					// Next day: keep overnight overflow entries before wrap time
+					return startLocalMinutes < wrapMinutes;
+				}
+				return false;
 			});
 
 	// IMP-01: Sort by start time per user setting (ascending default)

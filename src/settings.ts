@@ -69,7 +69,7 @@ export class TogglImportSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Day wrap time')
-			.setDesc('Entries starting before this time (hh:mm) are treated as the previous day. Default 00:00 disables this.')
+			.setDesc('Time in your machine\u2019s local timezone (hh:mm). Entries starting before this time belong to the previous day\u2019s note; next-day entries before this time are included here. Default 00:00 disables wrapping.')
 			.addText(text => text
 				.setPlaceholder('00:00')
 				.setValue(this.plugin.settings.dayWrapTime)
