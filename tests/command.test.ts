@@ -66,7 +66,7 @@ async function loadPluginAndGetCallback() {
 		dayWrapTime: '00:00',
 	};
 	await plugin.onload();
-	(plugin as any).getApiToken = vi.fn().mockResolvedValue('token');
+	(plugin as any).getApiToken = vi.fn().mockReturnValue('token');
 	const spec = mockAddCommand.mock.calls[0][0];
 	const editor = { replaceSelection: mockReplaceSelection } as any;
 	return { plugin, spec, editorCallback: spec.editorCallback, editor };
@@ -138,7 +138,7 @@ describe('Import Toggl Entries command', () => {
 		mockGetActiveFile.mockReturnValue({ basename: '2024-06-15' });
 
 		const { editorCallback, editor, plugin } = await loadPluginAndGetCallback();
-		(plugin as any).getApiToken = vi.fn().mockResolvedValue('');
+		(plugin as any).getApiToken = vi.fn().mockReturnValue('');
 		await editorCallback(editor);
 
 		expect(mockNotice).toHaveBeenCalledWith(
